@@ -9,12 +9,11 @@ public class Hospital
     private ArrayList<Doctor> doctors;
     private ArrayList<Patient> patients;
 
-    public Hospital(String name, String adress)
-    {
+    public Hospital(String name, String address) {
         this.name = name;
         this.adress = adress;
-        this.doctors = ArrayList<>();
-        this.patients = ArrayList<>();
+        this.patients = new ArrayList<>();
+        this.doctors = new ArrayList<>();
     }
 
     public void addDoctor(Doctor doctor) { doctors.add(doctor); }
