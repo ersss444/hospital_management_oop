@@ -8,7 +8,6 @@ public class Hospital {
         people.add(p);
     }
 
-    // Filtering
     public void showDoctors() {
         for (Person p : people) {
             if (p instanceof Doctor) {
@@ -17,7 +16,6 @@ public class Hospital {
         }
     }
 
-    // Searching
     public Person findById(int id) {
         for (Person p : people) {
             if (p.getId() == id) return p;
@@ -25,7 +23,6 @@ public class Hospital {
         return null;
     }
 
-    // Sorting
     public void sortByName() {
         people.sort(Comparator.comparing(Person::getName));
     }
