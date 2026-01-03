@@ -1,37 +1,35 @@
 package hospital.management;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Hospital hospital = new Hospital();
 
-        Hospital hospital = new Hospital("City Hospital", "Almaty");
+        hospital.addPerson(new Doctor(1, "Dr. Ali", "Cardiologist"));
+        hospital.addPerson(new Patient(2, "Aruzhan", "Flu"));
+        hospital.addPerson(new Doctor(3, "Dr. Nur", "Surgeon"));
 
-        Patient p1 = new Patient(1, "Ali", 20, "Flu");
-        Patient p2 = new Patient(2, "Aruzhan", 22, "Cold");
-        Patient p3 = new Patient(3, "Dana", 25, "Allergy");
+        System.out.println("=== All People ===");
+        hospital.showAll();
 
-        hospital.addPatient(p1);
-        hospital.addPatient(p2);
-        hospital.addPatient(p3);
+        System.out.println("\n=== Doctors Only ===");
+        hospital.showDoctors();
 
-        Doctor d1 = new Doctor("Dr. Smith", "Therapist");
-        Doctor d2 = new Doctor("Dr. Khan", "Allergist");
+        System.out.print("\nEnter ID to search: ");
+        int id = sc.nextInt();
+        Person p = hospital.findById(id);
 
-        hospital.addDoctor(d1);
-        hospital.addDoctor(d2);
-
-        d1.assignPateint(p1);
-        d1.assignPateint(p2);
-        d2.assignPateint(p3);
-
-        hospital.showAllPatients();
-        hospital.showAllDoctors();
-
-        if (p1.getAge() > p2.getAge()) {
-            System.out.println(p1.getName() + " is older than " + p2.getName());
-        } else if (p1.getAge() < p2.getAge()) {
-            System.out.println(p2.getName() + " is older than " + p1.getName());
+        if (p != null) {
+            System.out.println("Found: " + p);
         } else {
-            System.out.println(p1.getName() + " and " + p2.getName() + " are the same age");
+            System.out.println("Person not found");
         }
+
+        System.out.println("\n=== Sorted by Name ===");
+        hospital.sortByName();
+        hospital.showAll();
+
+        sc.close();
     }
 }

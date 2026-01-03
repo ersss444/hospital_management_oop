@@ -1,38 +1,38 @@
 package hospital.management;
+import java.util.*;
 
-import java.util.ArrayList;
+public class Hospital {
+    private List<Person> people = new ArrayList<>();
 
-public class Hospital
-{
-    private String name;
-    private String adress;
-    private ArrayList<Doctor> doctors;
-    private ArrayList<Patient> patients;
-
-    public Hospital(String name, String address) {
-        this.name = name;
-        this.adress = adress;
-        this.patients = new ArrayList<>();
-        this.doctors = new ArrayList<>();
+    public void addPerson(Person p) {
+        people.add(p);
     }
 
-    public void addDoctor(Doctor doctor) { doctors.add(doctor); }
-    public void addPatient(Patient patient) { patients.add(patient); }
-
-    public void showAllPatients()
-    {
-        System.out.println("=== All patients in " + name + " ===");
-        for(Patient p : patients)
-        {
-            p.showInfo();
+    // Filtering
+    public void showDoctors() {
+        for (Person p : people) {
+            if (p instanceof Doctor) {
+                System.out.println(p);
+            }
         }
     }
 
-    public void showAllDoctors(){
-        System.out.println("=== All doctors in " + name + " ===");
-        for (Doctor d : doctors)
-        {
-            d.showPateints();
+    // Searching
+    public Person findById(int id) {
+        for (Person p : people) {
+            if (p.getId() == id) return p;
+        }
+        return null;
+    }
+
+    // Sorting
+    public void sortByName() {
+        people.sort(Comparator.comparing(Person::getName));
+    }
+
+    public void showAll() {
+        for (Person p : people) {
+            System.out.println(p);
         }
     }
 }
