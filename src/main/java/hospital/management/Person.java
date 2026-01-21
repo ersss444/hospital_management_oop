@@ -20,11 +20,11 @@ public abstract class Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person)) return false;
-        Person p = (Person) o;
-        return id == p.id;
+    public boolean equals(Object O) {
+        if(this == O) return true;
+        if(!(O instanceof Person)) return false;
+        Person p = (Person) O;
+        return this.id == p.id;
     }
 
     @Override
