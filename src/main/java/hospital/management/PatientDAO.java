@@ -11,11 +11,12 @@ public class PatientDAO {
 
     public static void insertPatient(Patient p) throws Exception {
         Connection conn = DBConnection.connect();
-        String sql = "INSERT INTO patient VALUES(?, ?, ?)";
+        String sql = "INSERT INTO patient VALUES(?, ?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, p.getId());
         ps.setString(2, p.getName());
         ps.setString(3, p.getDiagnosis());
+        ps.setString(4, p.getLastName());
         ps.executeUpdate();
         conn.close();
     }
@@ -27,7 +28,7 @@ public class PatientDAO {
         ResultSet rs = st.executeQuery("SELECT * FROM patient");
 
         while(rs.next()) {
-            patients.add(new Patient(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            patients.add(new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
         }
 
         conn.close();
@@ -42,7 +43,7 @@ public class PatientDAO {
         ResultSet rs = st.executeQuery("SELECT * FROM patient ORDER BY name");
 
         while(rs.next()) {
-            patients.add(new Patient(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            patients.add(new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4)));
         }
 
         conn.close();
@@ -59,7 +60,7 @@ public class PatientDAO {
 
         Patient p = null;
         while(rs.next()) {
-            p = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3));
+            p = new Patient(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
         }
 
         conn.close();
