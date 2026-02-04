@@ -68,7 +68,7 @@ public class PatientDAO {
         return p;
     }
 
-    public static void deleteDoctorById(int id) throws Exception {
+    public static void deletePatientById(int id) throws Exception {
         Connection conn = DBConnection.connect();
         String sql = "DELETE FROM patient WHERE id = ?";
         PreparedStatement ps = conn.prepareStatement(sql);

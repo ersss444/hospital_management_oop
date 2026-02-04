@@ -34,7 +34,7 @@ public class Hospital {
 
         Patient p = PatientDAO.findPatientById(id);
         if(p != null) {
-            PatientDAO.deleteDoctorById(id);
+            PatientDAO.deletePatientById(id);
             return;
         }
 
